@@ -61,6 +61,7 @@ async function run() {
         - app.get('/booking/:id') - get a specific booking
         - app.post('/booking') - add a new booking
         - app.patch('/booking/:id') - 
+        - app.put('/booking/:id') - // upsert ==> update or insert (if exist)
         - app.delete('/booking/:id') - 
         */
         app.get('/booking', async(req,res) =>{
