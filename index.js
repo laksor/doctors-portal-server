@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
+const sgTransport = require('nodemailer-sendgrid-transport');
 const { MongoClient, ServerApiVersion} = require("mongodb");
 require("dotenv").config();
 
@@ -25,39 +26,45 @@ const client = new MongoClient(uri, {
 });
 
 //nodemailer
-function sendBookingEmail(booking){
-  const {email, treatment, appointmentDate, slot} = booking;
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.sendgrid.net',
-    port: 587,
-    auth: {
-        user: "apikey",
-        pass: process.env.SENDGRID_API_KEY
-    }
- });
-
- transporter.sendMail({
-  from: "try2best123@gmail.com", // verified sender email
-  to: email, // recipient email
-  subject: `Your appointment for ${treatment} is confirmed`, // Subject line
-  text: "Hello world!", // plain text body
-  html: `<h3>Appointment confirmed</h3>
-  <div>
-  <p>Your Appointment for Treatment ${treatment}</p>
-  <p>Please visit us on ${appointmentDate} at ${slot}</p>
-  <p>Thanks from Ahmed Medicare</p>
-  
-  </div>
-  
-  
-  `, // html body
-}, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
+const emailSenderOptions = {
+  auth: {
+    api_key: process.env.EMAIL_SENDER_KEY
   }
+}
+
+const emailClient = nodemailer.createTransport(sgTransport(emailSenderOptions));
+
+function sendAppointmentEmail(booking){
+  const {patient, patientName, treatment, date, slot} = booking;
+
+  var email = {
+    from: process.env.EMAIL_SENDER,
+    to: patient,
+    subject: `Your Appointment for ${treatment} is on ${date} at ${slot} is Confirmed`,
+    text: `Your Appointment for ${treatment} is on ${date} at ${slot} is Confirmed`,
+    html: `
+      <div>
+        <p> Hello ${patientName}, </p>
+        <h3>Your Appointment for ${treatment} is confirmed</h3>
+        <p>Looking forward to seeing you on ${date} at ${slot}.</p>
+        
+        <h3>Our Address</h3>
+        <p>Andor Killa Bandorban</p>
+        <p>Bangladesh</p>
+        <a href="https://web.programming-hero.com/">unsubscribe</a>
+      </div>
+    `
+  };
+
+  emailClient.sendMail(email, function(err, info){
+    if (err ){
+      console.log(err);
+    }
+    else {
+      console.log('Message sent: ', info);
+    }
 });
+
 }
 
 function verifyJWT(req, res, next){
@@ -189,7 +196,8 @@ async function run() {
           }
           const result = await bookingCollection.insertOne(booking);
           //send email about appointment confirmation
-          sendBookingEmail(booking)
+          console.log('sending email');
+          sendAppointmentEmail(booking);
           return res.send({success: true, result});
         })
 
