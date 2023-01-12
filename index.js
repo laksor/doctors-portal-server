@@ -189,7 +189,7 @@ async function run() {
           }
           const result = await bookingCollection.insertOne(booking);
           //send email about appointment confirmation
-          sendBookingEmail(booking);
+          sendBookingEmail(booking)
           return res.send({success: true, result});
         })
 
