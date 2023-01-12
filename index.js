@@ -26,7 +26,7 @@ const client = new MongoClient(uri, {
 
 //nodemailer
 function sendBookingEmail(booking){
-  const {email, treatment, appointmentDate, slot } = booking;
+  const {email, treatment, appointmentDate, slot} = booking;
   let transporter = nodemailer.createTransport({
     host: 'smtp.sendgrid.net',
     port: 587,
