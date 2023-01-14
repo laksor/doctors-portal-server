@@ -32,7 +32,7 @@ function sendBookingEmail(booking){
     host: 'smtp.sendgrid.net',
     port: 587,
     auth: {
-        user: "apikey",
+        user: process.env.USER_NAME,
         pass: process.env.SENDGRID_API_KEY
     }
  })
