@@ -2,9 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
-const mg = require('nodemailer-mailgun-transport');
 const { MongoClient, ServerApiVersion} = require("mongodb");
-const { getDefaultNormalizer } = require("@testing-library/react");
 require("dotenv").config();
 
 const app = express();
@@ -30,29 +28,18 @@ const client = new MongoClient(uri, {
 
 function sendBookingEmail(booking){
   const {patient, patientName, treatment, date, slot} = booking;
-
-  const auth = {
-    auth: {
-      api_key: process.env.EMAIL_SEND_KEY,
-      domain: process.env.EMAIL_SEND_DOMAIN
-    }
-  }
-  
-  const transporter = nodemailer.createTransport(mg(auth));
-
-
-  /*let transporter = nodemailer.createTransport({
+  let transporter = nodemailer.createTransport({
     host: 'smtp.sendgrid.net',
     port: 587,
     auth: {
         user: process.env.USER_NAME,
         pass: process.env.SENDGRID_API_KEY
     }
- })*/
+ })
 
  transporter.sendMail({
   from: process.env.EMAIL_SENDER,
-    to: process.env.EMAIL,
+    to: patient,
     subject: `Your Appointment for ${treatment} is on ${date} at ${slot} is Confirmed`,
     text: `Your Appointment for ${treatment} is on ${date} at ${slot} is Confirmed`,
     html: `
