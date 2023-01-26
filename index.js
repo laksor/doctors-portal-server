@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
-const stripe = require("stripe")('sk_test_51MUAyfH6sQUTsOebPErzlhKZ6fx6fDXc84SjbTQ1wntv2zewVsEp4C5FYljM3fJyM8C88op8h3BFvCHfKXyReURI00LLEzsnsF');
+const stripe = require('stripe')('sk_test_51MUAyfH6sQUTsOebPErzlhKZ6fx6fDXc84SjbTQ1wntv2zewVsEp4C5FYljM3fJyM8C88op8h3BFvCHfKXyReURI00LLEzsnsF');
 
 const { MongoClient, ServerApiVersion, ObjectId} = require("mongodb");
 require("dotenv").config();
@@ -96,17 +96,17 @@ async function run() {
         }
       }
 
-      app.post('/create-payment-intent', verifyJWT, async (req, res) => {
+      app.post('/create-payment-intent', verifyJWT, async(req, res) =>{
         const service = req.body;
         const price = service.price;
         const amount = price*100;
         const paymentIntent = await stripe.paymentIntents.create({
           amount : amount,
           currency: 'usd',
-          payment_method_types: ['card']
+          payment_method_types:['card']
         });
         res.send({clientSecret: paymentIntent.client_secret})
-      })
+      });
 
         app.get('/service', async(req,res) =>{
             const query = {};
