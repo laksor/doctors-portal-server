@@ -21,7 +21,7 @@ Medicare is a Fully Responsive React website built on Bootstrap 5 & Pure React j
 <li>An Admin can make a user as a Admin</li>
 <li>A dashboard is available for authenticated admin</li>
 <li>Admin can add see all the appointments</li>
-<li>User can get an appointment of his/her desire day</li>
+<li>Patient can get an appointment of his/her desire day</li>
   <li> CRUD operations ( Add , Manage and Delete services & doctors) </li>
   <li> Authentication ( Firebase, JWT ) </li>
   <li> Single Page Application (SPA)</li>
