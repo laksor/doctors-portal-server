@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@laksor 
+laksor
+/
+doctors-portal-site
+Public
+Cannot fork because you own this repository and are not a member of any organizations.
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+doctors-portal-site/README.md
+@laksor
+laksor Update README.md
+Latest commit 2e30232 1 minute ago
+ History
+ 1 contributor
+73 lines (54 sloc)  1.85 KB
+
 # ⭐The Medicare React JS Site
 
 <h2>Description</h2>
@@ -15,11 +46,12 @@ Medicare is a Fully Responsive React website built on Bootstrap 5 & Pure React j
 
 <ul> 
 <li>Online appointment making</li>
-<li>Review appointments</li>
+<li>Stripe payment & nodemailer </li>
+<li>An Admin can make a user as a Admin</li>
 <li>A dashboard is available for authenticated admin</li>
 <li>Admin can add see all the appointments</li>
 <li>User can get an appointment of his/her desire day</li>
-  <li> CRUD operations ( Add , Manage and Delete services) </li>
+  <li> CRUD operations ( Add , Manage and Delete services & doctors) </li>
   <li> Authentication ( Firebase, JWT ) </li>
   <li> Single Page Application (SPA)</li>
   <li> Patients Database </li>
@@ -54,6 +86,8 @@ Medicare is a Fully Responsive React website built on Bootstrap 5 & Pure React j
 
 <ul> 
   <li>React Router 6</li>
+  <li>Stripe</li>
+  <li>Nodemailer</li>
   <li>React Firebase Hooks</li>
   <li>React Toastify</li>
   <li>JWT (  JSON Web Token )</li>
@@ -68,3 +102,18 @@ Medicare is a Fully Responsive React website built on Bootstrap 5 & Pure React j
 <p>Server side Hosting - Render</p>
 
 
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+doctors-portal-site/README.md at main · laksor/doctors-portal-site
