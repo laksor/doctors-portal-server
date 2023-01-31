@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-const serverName = "Doctor's Portal";
+const serverName = "Medicare site by Ahmed";
 
 // middleware
 app.use(cors());
